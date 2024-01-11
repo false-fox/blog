@@ -1,0 +1,36 @@
+---
+interface Props {
+  name: string;
+  url: string;
+  image: string;
+  description: string;
+}
+
+const { name, url, image, description } = Astro.props;
+---
+
+
+<main>
+    <div id="container">
+    <div>
+   <h2>{name}</h2>
+
+   <p>{description}</p>
+   <p><a href={url}>Link</a></p>
+   </div>
+</div>
+</main>
+<style>
+    #container {
+        display: flex;
+        column-gap: 1em;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0px;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        font-size: 0.8em;
+    }
+</style>

@@ -1,51 +1,81 @@
 ---
 interface Props {
-	title: string;
+  path: string;
+  description: string;
 }
 
-const { title } = Astro.props;
+const { path, description } = Astro.props;
+import {SEO} from "astro-seo"
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>falsefox: {path}</title>
+    <SEO
+    title=`falsefox: ${path}`
+    description={description}
+    openGraph={{
+      basic: {
+        title: `falsefox: ${path}`,
+        type: "article",
+        url: "",
+        image: ""
+      }
+    }}
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+      html {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color:white;
+        background-color: #0d1117;
+        margin: 2em;
+        width: 100vw;
+    }
+    a:link {
+    color:#58a6ff
+  }
+  a:visited {
+    color:#8e96f0
+  }
+  p {
+  max-width: 40em;
+  }
+  @media (max-width: 600px) {
+  p {
+    max-width: 80vw;
+
+  }
+  
+}
+
+  body {
+    font-family: "Mplus2", sans-serif;
+  }
+
+  @font-face {
+    font-family: "MPlus1";
+	  src: url('../fonts/MPLUS1-VariableFont_wght.ttf');
+  }
+  @font-face {
+    font-family: "Mplus2";
+	  src: url('../fonts/MPLUS2-VariableFont_wght.ttf');
+  }
+  @font-face {
+    font-family: "w95fa";
+	  src: url('../fonts/w95fa.woff');
+  }
 </style>

@@ -1,0 +1,49 @@
+---
+interface Props {
+  author: string;
+  pubdate: string;
+  title: string;
+  description: string;
+  url: string;
+
+}
+
+const { author, url, pubdate, description, title } = Astro.props;
+---
+<main>
+    <div>
+        <h3 class="title"><a href={url}>{title}</a></h3>
+        <p class="meta">by {author}. published on {pubdate.slice(0, 10)}.</p>
+        <p>{description}</p>
+    </div>
+</main>
+<style>
+    p {
+        margin-top: 0.1em;
+        font-size: smaller;
+        max-width: 40em;
+    }
+    @media (max-width: 600px) {
+        p {
+             max-width: 80vw;
+        }
+         .title {
+            max-width: 20vw;
+            text-wrap:wrap;
+            margin-right: 1em;
+        }
+  
+}
+div {
+    max-width: 90vw;
+    padding-right: 5em;
+}
+    .title {
+        margin-bottom: 0.4em;
+        max-width: 40em;
+    }
+    .meta {
+        font-size: small;
+        margin-top: 0px;
+    }
+</style>
