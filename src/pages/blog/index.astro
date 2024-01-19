@@ -1,17 +1,56 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Footer from "../../components/Footer.astro"
-import Header from "../../components/Header.astro"
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
 import Blogpost from "../../components/Blogpost.astro";
+const allPosts = await Astro.glob("./posts/*/*.md");
 import Search from "astro-pagefind/components/Search";
-const allPosts = await Astro.glob('./posts/*/*.md');
 ---
-<Layout path="/blog" description="falsefox's blog about tech, programming and more.">
-    <Header/>
-    <main>
-        {allPosts.map((post) => <Blogpost url={post.url} title={post.frontmatter.title} description={post.frontmatter.description} pubdate={post.frontmatter.pubDate} author={post.frontmatter.author}/>)}
-    </main>
-    <Footer/>
-    <style>
-    </style>
+
+<Layout
+  path="/blog"
+  description="falsefox's blog about tech, programming and more."
+>
+  <Header />
+
+  <!-- Not building an entire page-indexing system myself for the blog, this works well. -->
+  <Search
+    id="search"
+    className="pagefind-ui"
+    uiOptions={{ showImages: true }}
+  /> 
+  <p>Welcome to my blog! I don't have a set schedule, I just make a post whenever
+  something inspires me. <a href="/rss.xml" target="_blank"><img src="/images/social_style_3_rss-512-1.png.webp" id="rss" /></a></p> 
+
+<h1>
+    Recent posts:
+  </h1>
+  <hr>
+  <main>
+    {
+      allPosts.map((post) => (
+        <Blogpost
+          url={post.url}
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+          pubdate={post.frontmatter.pubDate}
+          author={post.frontmatter.author}
+        />
+      ))
+    }
+  </main>
+  <Footer />
+  <style></style>
 </Layout>
+
+<style is:inline>
+  #search {
+    max-width: 30em;
+    padding-bottom: 1em;
+  }
+  #rss {
+    max-width: 1em;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+</style>

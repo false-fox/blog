@@ -5,6 +5,6 @@ import pagefind from "astro-pagefind"
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://falsefox.dev',
+  site: 'https://www.falsefox.dev',
   integrations: [sitemap(), pagefind()]
 });

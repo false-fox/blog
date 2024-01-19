@@ -4,10 +4,8 @@ layout: ../../../../layouts/Blog.astro
 pubDate: 2024-01-10
 description: 'A journey to get a rotary phone from goodwill to place and recieve phone calls in 2024. I ended up with my own enterprise-level phone system.'
 author: 'falsefox'
-image:
-    url: 'https://docs.astro.build/assets/full-logo-light.png'
-    alt: 'The full Astro logo.'
 tags: ["phone", "tech", "sysadmin"]
+image: "/images/DSC07730.jpg"
 ---
 # Origins
 
@@ -69,7 +67,7 @@ After some hassling and following [mike's guide on configuring the pbx](https://
 ### Part 4. Success!
 <hr>
 
-<img src="/images/DSC07730.jpg" alt="drawing" max-height="200"/>
+<img data-pagefind-meta="image[src]" src="/images/DSC07730.jpg" alt="drawing" max-height="200"/>
 
 After getting everything setup, messing around with settings, enabling E911, making sure my CallerID is set up, i made my first phonecall to my own phone and called up some of my friends! It made me so happy to finally see it up and working, and I immediately got to screwing around. 
 

@@ -5,80 +5,79 @@ interface Props {
 }
 
 const { path, description } = Astro.props;
-import {SEO} from "astro-seo"
+import PostSEO from '../components/PostSEO.astro'
+
+//Quick and dirty
+let blogpost = false 
+if (path == "blogpost") {
+  blogpost = true
+}
+
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>falsefox: {path}</title>
-    <SEO
-    title=`falsefox: ${path}`
-    description={description}
-    openGraph={{
-      basic: {
-        title: `falsefox: ${path}`,
-        type: "article",
-        url: "",
-        image: ""
-      },
-      optional: {
-            siteName: "falsefox.dev"
-        },
-    }}
-    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    { blogpost ? <div></div> : <PostSEO path={path} description={description}/>}
   </head>
   <body>
     <slot />
   </body>
-</html>
-<style is:global>
-      html {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color:white;
-        background-color: #0d1117;
-        margin: 2em;
-        width: 100vw;
+  <style lang="less" is:global>
+    // Base HTML stuff, this is to get the content centered on the page and specify some base stuff like color..
+    html {
+      //colors, font
+      background-color: #0d1117;
+      color: white;
+      font-family: "Mplus2", sans-serif;
+      //centering
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
     }
+    //Links
     a:link {
-    color:#58a6ff
-  }
-  a:visited {
-    color:#8e96f0
-  }
-  p {
-  max-width: 40em;
-  }
-  @media (max-width: 600px) {
-  p {
-    max-width: 80vw;
+      color: #58a6ff;
+    }
+    a:visited {
+      color: #8e96f0;
+    }
 
-  }
-  
-}
+    p,
+    li,
+    pre,
+    code,
+    a {
+      //this is a good readable length, too long and it's unreadable, too short and it's unreadable.
+      max-width: 70ex;
+      //increased lineheight and font size for better readability.
+      line-height: 1.5;
+      font-size: 1.1em;
+    }
 
-  body {
-    font-family: "Mplus2", sans-serif;
-  }
+    h1, h2, h3, h4 {
+      max-width: 70ex;
+    }
 
-  @font-face {
-    font-family: "MPlus1";
-	  src: url('../fonts/MPLUS1-VariableFont_wght.ttf');
-  }
-  @font-face {
-    font-family: "Mplus2";
-	  src: url('../fonts/MPLUS2-VariableFont_wght.ttf');
-  }
-  @font-face {
-    font-family: "w95fa";
-	  src: url('../fonts/w95fa.woff');
-  }
-</style>
+    //font declarations.
+    //I picked Mplus1 because it's a nice modern font with support for latin, kana and kanji; 
+    //and it's readability.
+    @font-face {
+      font-family: "MPlus1";
+      src: url("../fonts/MPLUS1-VariableFont_wght.ttf");
+    }
+    @font-face {
+      font-family: "Mplus2";
+      src: url("../fonts/MPLUS2-VariableFont_wght.ttf");
+    }
+  </style>
+</html>

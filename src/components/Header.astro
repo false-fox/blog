@@ -1,38 +1,59 @@
 <main>
-    <h1>falsefox</h1>
-    <div id="nav">
-      <a><a href="/#">~/</a></p>
-      <p><a class="left" href="/blog">/blog</a></p>
-      <p><a class="left"  href="/projects">/projects</a></p>
-    </div>
-    <hr>
+  <h1 id="title">falsefox</h1>
+    <div id="navbar">
+    <a><a id="home_nav" href="/#">~/</a></a>
+    <p><a id="blog_nav" class="left" href="/blog">/blog</a></p>
+    <p><a id="projects_nav" class="left" href="/projects">/projects</a></p>
+  </div>
+  <hr />
 </main>
-<style lang="less">
-    .left {
-        padding-left: 3em;
-    }
-#nav {
-  display:flex;
-  flex-direction: row;
-  width: 45em;
-  max-width: 100vw;
-  p {
-    font-weight: 550;
-    margin-top:0px;
-    margin-bottom: 0.5em;
+<script is:inline>
+//there's probably a way to do this with just CSS but the script is so simple
+//that i don't feel the need to spend time developing a CSS only solution.
+switch (window.location.pathname.split("/")[1]) {
+    case "blog":
+      var element = document.getElementById("blog_nav")
+      element.classList.add("underlined")
+      break;
+    case "projects":
+      var element = document.getElementById("projects_nav")
+      element.classList.add("underlined")
+      break;
+    default:
+      var element = document.getElementById("home_nav")
+      element.classList.add("underlined")
+      break;
+
   }
-}
-a {
-    color:white
-}
-a:visited {
-  color:white
-}
-
-h1 {
-  font-size: 4em;
-  max-width: 100vw;
-  margin: 0px;
-}
-
+</script>
+<style lang="less">
+  .underlined {
+    text-decoration: underline !important;
+  }
+  #title {
+    font-size: 4em;
+    margin: 0px;
+  }
+  #navbar {
+    display: flex;
+    align-items: center;
+    a {
+      color: white;
+      text-decoration: none;
+      &:visited {
+        color: white;
+        text-decoration: none;
+      }
+    }
+    a:hover {
+      color: gray;
+      transition: 100ms;
+      a {
+        color: gray !important;
+      }
+    }
+    .left {
+      margin-left: 2em;
+    }
+  }
 </style>

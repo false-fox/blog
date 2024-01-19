@@ -2,94 +2,35 @@
 const { frontmatter } = Astro.props;
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { SEO } from "astro-seo";
----
-<head slot='head'>     
-    <SEO
-    title={frontmatter.title}
-    description={frontmatter.description}
-    openGraph={{
-        basic:{
-            title: `${frontmatter.title}`,
-            type:"article",
-            image:""
-        },
-        optional: {
-            siteName: "falsefox.dev"
-        },
-        article: {
-            publishedTime: `${frontmatter.pubDate}`,
-            authors: [`${frontmatter.author}`],
-            tags: frontmatter.tags,
-            section: "Technology"
-        }
-    }}
-    extend={{
-        link: [{rel: "icon", href:"/favicon.ico"}]
-    }}
-    
-    />   
-</head>
-<body>
-    <Header/>
-    <main>
-    <section>
-        <div>
-            <h2>{frontmatter.title}</h2>
-            <p><i>{frontmatter.description}</i></p>
-            <p>by {frontmatter.author} - {frontmatter.pubDate.slice(0,10)} </p>
-            <hr>
-        </div>
-    </section>
-    <section>
-        <slot data-pagefind-body/>
-    </section>
-    <Footer/>
-</main>
- </body>
-<style is:global>
-      a:link {
-    color:#58a6ff
-  }
-  a:visited {
-    color:#8e96f0
-  }
-  body {
-    max-width: 90vw;
-  }
-  html {
-        color:#c9d1d9;
-        background-color: #0d1117;
-        display: flex;
-        align-items: center;
+import BlogpostSEO from "../components/BlogpostSEO.astro";
+import Layout from "./Layout.astro";
 
-        flex-direction: column;
-        justify-content: left;
-        text-align: left;
-    }
-  p, h1, h2, h3, li {
-  max-width: 40em;
-  }
-  p, li {
-    line-height: 1.7;
-    font-size: 1.1em;
-    margin-left: 1em;
-  }
-  body {
-    font-family: "Mplus2", sans-serif;
-  }
-  @font-face {
-    font-family: "MPlus1";
-	  src: url('../fonts/MPLUS1-VariableFont_wght.ttf');
-  }
-  @font-face {
-    font-family: "Mplus2";
-	  src: url('../fonts/MPLUS2-VariableFont_wght.ttf');
-  }
+---
+<BlogpostSEO frontmatter={frontmatter}/>
+<Layout path="blogpost" description="/thiswillbeoverwrittenanyway...">
+  <body>
+    <Header />
+    <main>
+      <section>
+        <div>
+          <h2 data-pagefind-meta="title">{frontmatter.title}</h2>
+          <p><i>{frontmatter.description}</i></p>
+          <p>by {frontmatter.author} - {frontmatter.pubDate.slice(0, 10)}</p>
+          <hr />
+        </div>
+      </section>
+      <section data-pagefind-body>
+        <slot />
+      </section>
+      <Footer />
+    </main>
+  </body>
+</Layout>
+
+<style is:inline>
   img {
-    max-width: 50%;
+    max-width: 50% !important;
     max-height: 20em;
-    margin-left: 1em;
     border: 2px solid black;
   }
 </style>

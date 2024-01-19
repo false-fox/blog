@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro"
+import Header from "../components/Header.astro"
+---
+
+<Layout path="/404" description="falsefox's website about tech, privacy, programming, and links to falsefox's blog and projects.">
+  <main>
+    <div id="container">
+        <h1>Error 404 ❌</h1>
+        <p>Sorry, your request for <code><span id="pathhere">/</span></code> wasn't found. If you got here by clicking a link on falsefox.dev, please contact falsefox and let them know their link is broken.</p>
+        <p>You can <a href="/#">go to the home page</a> or press the back key in your browser.</p>
+    </div>
+  <Footer/>
+</main>
+<script is:inline>
+   var path = window.location
+   let element = document.getElementById("pathhere")
+   element.innerHTML = path
+</script>
+<style lang="less" is:inline>
+    #container{
+    }
+</style>
+</Layout>

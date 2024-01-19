@@ -1,0 +1,24 @@
+---
+interface Props {
+    path: string;
+    description: string;
+  }
+  
+  const { path, description } = Astro.props;
+  import { SEO } from 'astro-seo';
+---
+<main>
+    <SEO
+    title=`falsefox${path}`
+    description={description}
+    openGraph={{
+      basic: {
+        title: `falsefox: ${path}`,
+        type: "article",
+        image: "",
+      },
+      optional: {
+        siteName: "falsefox.dev",
+      },
+    }}
+  /></main>
